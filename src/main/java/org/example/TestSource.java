@@ -31,7 +31,7 @@ public class TestSource {
             "Sports",
             "Health & Beauty"})
     @ParameterizedTest(name = "Проверка наличия кнопки {0} в меню Ebay")
-    void EbayTitleTest(String button) {
+    void ebayTitleTest(String button) {
         $(".hl-cat-nav").shouldHave(text(button));
     }
 
@@ -39,12 +39,12 @@ public class TestSource {
             "Fashion, Clothing, Shoes & Accessories",
             "Health & Beauty, Health & Beauty"})
     @ParameterizedTest(name = "Проверка что кнопка {0} открывает страницу с текстом {1}")
-    void EbayHeaderTest(String button, String expectedText) {
+    void ebayHeaderTest(String button, String expectedText) {
         $(".hl-cat-nav").$(byText(button)).click();
         $(".b-pageheader__text").shouldHave(text(expectedText));
     }
 
-    static Stream<Arguments> EbayCatTest() {
+    static Stream<Arguments> ebayCatTest() {
         return Stream.of(
                 Arguments.of("Electronics", List.of("Cameras & Photo", "Cell Phones & Accessories",
                         "Computers/Tablets & Networking", "Home Surveillance", "Major Appliances",
@@ -56,7 +56,7 @@ public class TestSource {
 
     @MethodSource
     @ParameterizedTest(name = "Проверка списка категорий {1} в меню {0}")
-    void EbayCatTest(String header,List<String> category) {
+    void ebayCatTest(String header,List<String> category) {
         $(".hl-cat-nav").$(byText(header)).click();
         $$(".b-accordion-text").shouldHave(CollectionCondition.texts(category));
     }
